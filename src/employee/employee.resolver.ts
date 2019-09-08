@@ -2,6 +2,7 @@ import { Query, Resolver, Mutation, Args } from '@nestjs/graphql';
 import { EmployeeService } from './employee.service';
 import { Employee } from './employee.entity';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { DeleteEmployeeDto } from './dto/delete-employee.dto';
 import { DeleteEmployeePayloadDto } from './dto/delete-employee-payload.dto';
 
@@ -25,6 +26,14 @@ export class EmployeeResolver {
     args: CreateEmployeeDto,
   ): Promise<Employee> {
     return this.employeeService.createEmployee(args);
+  }
+
+  @Mutation('updateEmployee')
+  async update(
+    @Args('updateEmployeeInput')
+    args: UpdateEmployeeDto,
+  ): Promise<Employee> {
+    return this.employeeService.updateEmployee(args);
   }
 
   @Mutation('deleteEmployee')

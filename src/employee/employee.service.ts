@@ -4,6 +4,8 @@ import { EmployeeRepository } from './employee.repository';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { DeleteEmployeeDto } from './dto/delete-employee.dto';
 import { DeleteEmployeePayloadDto } from './dto/delete-employee-payload.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
+
 @Injectable()
 export class EmployeeService {
   constructor(private readonly employeeRepository: EmployeeRepository) {}
@@ -20,6 +22,12 @@ export class EmployeeService {
     createEmployeeDto: CreateEmployeeDto,
   ): Promise<Employee> {
     return await this.employeeRepository.createEmployee(createEmployeeDto);
+  }
+
+  async updateEmployee(
+    updateEmployeeDto: UpdateEmployeeDto,
+  ): Promise<Employee> {
+    return await this.employeeRepository.updateEmployee(updateEmployeeDto);
   }
 
   async deleteEmployee(

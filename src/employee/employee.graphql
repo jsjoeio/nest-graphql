@@ -5,6 +5,7 @@ type Query {
 
 type Mutation {
   createEmployee(createEmployeeInput: CreateEmployeeInput): Employee!
+  updateEmployee(updateEmployeeInput: UpdateEmployeeInput): Employee!
   deleteEmployee(
     deleteEmployeeInput: DeleteEmployeeInput
   ): DeleteEmployeePayload!
@@ -20,6 +21,11 @@ type DeleteEmployeePayload {
 }
 
 input CreateEmployeeInput {
+  name: String!
+}
+
+input UpdateEmployeeInput {
+  id: Int!
   name: String!
 }
 

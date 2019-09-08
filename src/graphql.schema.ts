@@ -13,6 +13,11 @@ export interface DeleteEmployeeInput {
     id: number;
 }
 
+export interface UpdateEmployeeInput {
+    id: number;
+    name: string;
+}
+
 export interface DeleteEmployeePayload {
     deleted: boolean;
 }
@@ -24,6 +29,7 @@ export interface Employee {
 
 export interface IMutation {
     createEmployee(createEmployeeInput?: CreateEmployeeInput): Employee | Promise<Employee>;
+    updateEmployee(updateEmployeeInput?: UpdateEmployeeInput): Employee | Promise<Employee>;
     deleteEmployee(deleteEmployeeInput?: DeleteEmployeeInput): DeleteEmployeePayload | Promise<DeleteEmployeePayload>;
 }
 
