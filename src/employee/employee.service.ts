@@ -12,6 +12,10 @@ export class EmployeeService {
     return await this.employeeRepository.find();
   }
 
+  async getEmployeeById(id: number): Promise<Employee> {
+    return await this.employeeRepository.findOne(id);
+  }
+
   async createEmployee(
     createEmployeeDto: CreateEmployeeDto,
   ): Promise<Employee> {

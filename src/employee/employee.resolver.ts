@@ -14,6 +14,11 @@ export class EmployeeResolver {
     return this.employeeService.getEmployees();
   }
 
+  @Query(returns => Employee)
+  async employee(id: number): Promise<Employee> {
+    return this.employeeService.getEmployeeById(id);
+  }
+
   @Mutation('createEmployee')
   async create(
     @Args('createEmployeeInput')
