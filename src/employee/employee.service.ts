@@ -15,7 +15,12 @@ export class EmployeeService {
   }
 
   async getEmployeeById(id: number): Promise<Employee> {
-    return await this.employeeRepository.findOne(id);
+    const employee = await this.employeeRepository.findOne(id);
+
+    if (!employee) {
+      throw new NotFoundException(`Employee with ID: ${id} not found.`);
+    }
+    return employee;
   }
 
   async createEmployee(
@@ -27,7 +32,17 @@ export class EmployeeService {
   async updateEmployee(
     updateEmployeeDto: UpdateEmployeeDto,
   ): Promise<Employee> {
-    return await this.employeeRepository.updateEmployee(updateEmployeeDto);
+    const { name, id } = updateEmployeeDto;
+    const employee = await this.employeeRepository.findOne(id);
+
+    if (!employee) {
+      throw new NotFoundException(`Employee with ID: ${id} not found.`);
+    }
+
+    employee.name = name;
+    await employee.save();
+
+    return employee;
   }
 
   async deleteEmployee(

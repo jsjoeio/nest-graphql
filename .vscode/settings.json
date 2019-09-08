@@ -30,7 +30,6 @@
   "editor.quickSuggestions": true,
   "editor.suggestOnTriggerCharacters": false,
   "editor.tabCompletion": "on",
-  "workbench.statusBar.visible": false,
   "vim.sneak": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.tslint": true
