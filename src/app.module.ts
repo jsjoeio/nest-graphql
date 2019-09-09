@@ -4,6 +4,8 @@ import { EmployeeModule } from './employee/employee.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { join } from 'path';
+import { PlaygroundController } from './playground/playground.controller';
+import { PlaygroundModule } from './playground/playground.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
@@ -14,6 +16,8 @@ import { join } from 'path';
       },
     }),
     EmployeeModule,
+    PlaygroundModule,
   ],
+  controllers: [PlaygroundController],
 })
 export class AppModule {}
