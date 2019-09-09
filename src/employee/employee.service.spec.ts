@@ -74,7 +74,6 @@ describe('EmployeeService', () => {
 
   describe('createEmployee', () => {
     it('should create an employee and return them', async () => {
-      // skip
       const testEmployee: Partial<Employee> = {
         name: 'Joe',
         id: 1,
