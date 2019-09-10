@@ -1,5 +1,7 @@
-type Query {
-  employees: [Employee]
+directive @hasRole(oneOf: [String!]) on QUERY | FIELD_DEFINITION
+
+type Query  {
+  employees: [Employee] @hasRole(oneOf: ["contributor"])
   employee(id: ID!): Employee
 }
 
