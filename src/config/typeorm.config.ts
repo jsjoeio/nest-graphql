@@ -3,6 +3,7 @@ import * as config from 'config';
 
 const dbConfig = config.get('db');
 
+console.log('what are my env', process.env);
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: dbConfig.type,
   host: process.env.HOST || dbConfig.host,
