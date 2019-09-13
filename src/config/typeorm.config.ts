@@ -3,11 +3,10 @@ import * as config from 'config';
 
 const dbConfig = config.get('db');
 
-console.log('what are my env', process.env);
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: dbConfig.type,
   host: process.env.HOST || dbConfig.host,
-  port: process.env.PORT || dbConfig.port,
+  port: process.env.DATABASE_PORT || dbConfig.port,
   username: process.env.DATABASE_USERNAME || dbConfig.username,
   password: process.env.DATABASE_PASSWORD || dbConfig.password,
   database: process.env.DATABASE_NAME || dbConfig.database,
