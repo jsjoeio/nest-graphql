@@ -1,6 +1,6 @@
 db:
-  host: process.env.HOST,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSOWRD,
-  database: process.env.DATABASE_NAME,
+  host: process.env.HOST || 'production-host',
+  username: process.env.DATABASE_USERNAME || 'production-username',
+  password: process.env.DATABASE_PASSOWRD || 'production-password',
+  database: process.env.DATABASE_NAME || 'production-database',
   synchronize: true
