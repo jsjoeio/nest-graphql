@@ -1,7 +1,7 @@
 {
   "editor.tabSize": 2,
   "editor.fontSize": 17,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": -1,
   "workbench.colorTheme": "Solarized Dark",
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "line",

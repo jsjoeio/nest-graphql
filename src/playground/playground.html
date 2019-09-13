@@ -52,12 +52,16 @@
     <div id="graphiql">Loading...</div>
     <script>
       var isLoggedIn = false;
+      var labelText = 'Log in';
       var auth = new window['onegraph-auth'].OneGraphAuth({
         appId: 'b6f3e649-0a7d-4a0d-a2a2-cade9d37f399',
       });
       window.auth = auth;
 
-      auth.isLoggedIn('github').then(status => (isLoggedIn = status));
+      auth.isLoggedIn('github').then(status => {
+        isLoggedIn = status;
+        labelText = 'Logged in';
+      });
 
       /**
        * This GraphiQL example illustrates how to use some of GraphiQL's props
@@ -181,17 +185,23 @@
             GraphiQL.Toolbar,
             {},
             React.createElement(GraphiQL.Button, {
-              title: 'Log in',
-              label: 'Log in',
+              title: isLoggedIn ? 'Logged In' : 'Log in',
+              label: isLoggedIn ? 'Logged In' : 'Log in',
               onClick: function() {
-                auth
-                  .login('github')
-                  .then(() => {
-                    auth
-                      .isLoggedIn('github')
-                      .then(status => (isLoggedIn = status));
-                  })
-                  .catch(e => console.error('Problem logging in', e));
+                console.log('what is loggedin here', isLoggedIn);
+                if (!isLoggedIn) {
+                  auth
+                    .login('github')
+                    .then(() => {
+                      auth
+                        .isLoggedIn('github')
+                        .then(status => (isLoggedIn = status));
+                      labelText = 'Logged In';
+                    })
+                    .catch(e => console.error('Problem logging in', e));
+                } else {
+                  alert('You are already logged in!');
+                }
               },
             }),
           ),
