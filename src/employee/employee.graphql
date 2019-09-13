@@ -1,16 +1,19 @@
+directive @isAuthenticated on QUERY | FIELD_DEFINITION
 directive @hasRole(oneOf: [String!]) on QUERY | FIELD_DEFINITION
 
-type Query  {
-  employees: [Employee] @hasRole(oneOf: ["contributor"])
+type Query {
+  employees: [Employee]
   employee(id: ID!): Employee
 }
 
 type Mutation {
   createEmployee(createEmployeeInput: CreateEmployeeInput): Employee!
+    @hasRole(oneOf: ["employee"])
   updateEmployee(updateEmployeeInput: UpdateEmployeeInput): Employee!
+    @hasRole(oneOf: ["employee"])
   deleteEmployee(
     deleteEmployeeInput: DeleteEmployeeInput
-  ): DeleteEmployeePayload!
+  ): DeleteEmployeePayload! @hasRole(oneOf: ["employee"])
 }
 
 type Employee {

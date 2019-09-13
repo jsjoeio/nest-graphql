@@ -7,14 +7,14 @@ import { join } from 'path';
 import { PlaygroundController } from './playground/playground.controller';
 import { PlaygroundModule } from './playground/playground.module';
 import {
-  hasRole,
-  isAuthenticated,
   makeOneGraphJwtVerifier,
+  isAuthenticated,
+  hasRole,
+  extractBearerToken,
 } from '@jsjoeio/onegraph-apollo-server-auth';
 
 const ONEGRAPH_APP_ID = 'b6f3e649-0a7d-4a0d-a2a2-cade9d37f399';
-const verifyJwtFromHeaders = makeOneGraphJwtVerifier(ONEGRAPH_APP_ID, {});
-
+const verifyJwt = makeOneGraphJwtVerifier(ONEGRAPH_APP_ID, {});
 
 @Module({
   imports: [
@@ -25,21 +25,33 @@ const verifyJwtFromHeaders = makeOneGraphJwtVerifier(ONEGRAPH_APP_ID, {});
         path: join(process.cwd(), 'src/graphql.schema.ts'),
       },
       schemaDirectives: {
-        hasRole,
         isAuthenticated,
+        hasRole,
       },
       context: async incoming => {
-        let jwtContext;
+        // Anything else you'd like in the resolver context goes here.
+        let context = {};
 
-        // Extract and verify the JWT using OneGraph's helper function
+        // Extract the JWT using OneGraph's helper function
+        const token = extractBearerToken(incoming.req);
+
+        if (!token) {
+          return { ...context, jwt: null };
+        }
+
+        // If we have a token, try to decode and verify it using either
+        // public/private or shared-secret, depending on the preference
+        // stored in the JWT. If we fail, discard the token and return
+        // a mostly-empty context
         try {
-          jwtContext = await verifyJwtFromHeaders(incoming.req.headers);
-        } catch (e) { }
-
-        // Now add any custom properties you'd like to have in addition to the JWT
-        // context
-        const context = { ...jwtContext, reqStart: Date.now() };
-        return context;
+          const decoded = await verifyJwt(token).catch(rejection =>
+            console.warn(`JWT verification failed: `, rejection),
+          );
+          return { ...context, jwt: decoded };
+        } catch (rejection) {
+          console.warn(rejection);
+          return { ...context, jwt: null };
+        }
       },
     }),
     EmployeeModule,

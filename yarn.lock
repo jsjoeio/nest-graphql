@@ -70,10 +70,10 @@
   dependencies:
     "@hapi/hoek" "8.x.x"
 
-"@jsjoeio/onegraph-apollo-server-auth@^2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@jsjoeio/onegraph-apollo-server-auth/-/onegraph-apollo-server-auth-2.0.7.tgz#d486556c4e0cb8cd265417530bfa37f67e3a9cc6"
-  integrity sha512-EqfbKQ0sovuJuQDzuMmGs1u4VhjokxLWGIXk0IfyjmrvrIUYzaSgE3RAU878SNFcbhMQZxm/lvrTkhckehvaJQ==
+"@jsjoeio/onegraph-apollo-server-auth@^2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@jsjoeio/onegraph-apollo-server-auth/-/onegraph-apollo-server-auth-2.0.12.tgz#9cf0f5591299b1c24b5f6ec401150da25365e7eb"
+  integrity sha512-nYDpumauHPUXGU5h6UnRKXJZVZCKhaSGCjHTWQbXe7APFODWz8w/HOlC9trvq9CQkoU/3fCYGvnKyvjROVPOsg==
   dependencies:
     jsonwebtoken "8.5.1"
     jwks-rsa "1.6.0"
@@ -1511,6 +1511,13 @@ concurrently@^4.1.0:
     supports-color "^4.5.0"
     tree-kill "^1.2.1"
     yargs "^12.0.5"
+
+config@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/config/-/config-3.2.2.tgz#c7d31bb2a9d30013a905ff420101e3b1ba58eead"
+  integrity sha512-rOsfIOAcG82AWouK4/vBS/OKz3UPl2T/kP0irExmXJJOoWg2CmdfPLdx56bCoMUMFNh+7soQkQWCUC8DyemiwQ==
+  dependencies:
+    json5 "^1.0.1"
 
 configstore@^3.0.0:
   version "3.1.2"
