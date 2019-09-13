@@ -28,6 +28,7 @@ const verifyJwt = makeOneGraphJwtVerifier(ONEGRAPH_APP_ID, {});
         isAuthenticated,
         hasRole,
       },
+      introspection: true,
       context: async incoming => {
         // Anything else you'd like in the resolver context goes here.
         let context = {};
