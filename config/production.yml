@@ -1,2 +1,6 @@
 db:
-  synchronize: false
+  host: process.env.HOST,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSOWRD,
+  database: process.env.DATABASE_NAME,
+  synchronize: true
